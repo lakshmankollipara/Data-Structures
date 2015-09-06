@@ -1,0 +1,89 @@
+/*K.LAKSHMAN MADHAV
+ BL.EN.U4CSE09075
+ LINEAR QUEUE*/
+
+#include<stdio.h>
+#define max 5
+typedef struct queue
+{
+ int front;
+ int rear;
+ int entry[max];
+}
+queue;
+int QueueFull(queue *q)
+{
+ return q->rear>=max-1;
+}
+int QueueEmpty(queue *q)
+{
+ return q->rear<0;
+}
+void createqueue(queue *q)
+{
+ q->front=0;
+ q->rear=-1;
+}
+void insert(int item,queue *q)
+{
+ if(QueueFull(q))
+ printf("q is full\n");
+ else
+ if(q->rear<max)
+ {
+ q->entry[++q->rear]=item;
+ }
+ else
+ return 0;
+}
+int delete(int *item,queue *q)
+{
+ if(QueueEmpty(q))
+ printf("que is empty\n");
+ else
+ {
+  *item=q->entry[q->front++];
+ }
+}
+display(queue *q)
+{
+ int i;
+ printf("the contents of the queue are\n");
+ for(i=q->front;i<=q->rear;i++)
+ printf("%d\t",q->entry[i]);
+}
+int main()
+{
+ queue q;
+ int i,n[10],c;
+ createqueue(&q);
+ printf("enter the array\n");
+ for(i=0;i<6;i++)
+ scanf("%d",&n[i]);
+ printf("insert three elements\n");
+ for(i=0;i<3;i++)
+ insert(n[i],&q);
+ printf("delete 2 elements\n");
+ for(i=0;i<2;i++)
+ delete(&c,&q);
+ printf("insert 3 elements\n");
+ printf("the contents of the que are\n");
+ for(i=0;i<3;i++)
+ insert(n[i],&q);
+ display(&q);
+}
+/* output
+enter the array
+1
+2
+3
+4
+5
+6
+insert 3 elements 
+delete 2 elements 
+insert 3 elements
+q is full
+the contents of the que are
+3 1 2
+*/

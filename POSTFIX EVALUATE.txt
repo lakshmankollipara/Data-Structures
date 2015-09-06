@@ -1,0 +1,80 @@
+/*K.LAKSHMAN MADHAV
+ BL.EN.U4CSE09075
+ EVALUATE POSTFIX EXP*/
+
+#include<stdio.h>
+struct stack
+{
+	int top;
+	int a[10];
+};
+struct stack S;
+void push(int m);
+int pop();
+main()
+{
+ int i,t1,t2,count=0,count1=0,r2=1,r1=-1,f=0,result,x;
+ char post[10];
+ printf("\n enter the expression\t");
+ scanf("%s",post);
+ for(i=0;post[i]!='\0';i++)
+ {
+  if(post[i]=='+'||post[i]=='-'||post[i]=='*'||post[i]=='/')
+  {
+   count++;
+  }
+  else
+  {
+   count1++;
+  }
+ }
+ if(count1*r2+count*r1>=1)
+ {
+  printf("rank is 1 valid expression");
+  f=1;
+ }
+ else
+ printf("invalid expression");
+ if(f==1)
+ {
+  for(i=0;post[i]!='\0';i++)
+  {
+   switch(post[i])
+   {
+   case'+':t2=pop();
+	       t1=pop();
+		   push(t1+t2);
+		   break;
+   case'-':t2=pop();
+	       t1=pop();
+		   push(t1-t2);
+		   break;
+   default:printf("\n give the value for %c",post[i]);
+	       scanf("%d",&x);
+		   push(x);
+   }
+  }
+ }
+ result=pop();
+ printf("the result is %d",result);
+}
+int pop()
+{
+ s.top--;
+ return(s.a[s.top+1]);
+}
+void push(int m)
+{
+ s.top++;
+ s.a[s.top]=m;
+}
+/* output
+enter the expression ab/cd*+f-
+rank 1 is valid expression
+give the value for a4
+give the value for b2
+give the value for c3
+give the value for d7
+give the value for f5
+the result is 18
+*/

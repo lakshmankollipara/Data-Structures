@@ -1,0 +1,67 @@
+/*K.LAKSHMAN MADHAV
+ BL.EN.U4CSE09075
+ STACK IMPLIMENTATION*/
+
+#include<stdio.h>
+#define MAXSTACK 10
+typedef char stack entry;
+typedef struct stack
+{
+ int top;
+ stackentry entry[MAXSTACK];
+}Stack;
+int stackfull(Stack *s)
+{
+ return s->top>=MAXSTACK;
+}
+int stackempty(Stack *s)
+{
+ return s->top<=0;
+}
+void create(Stack *s)
+{
+ s->top=0;
+}
+void push(stackentry item,Stack *s)
+{
+ if(stackfull(s))
+ printf("stack full\n");
+ else
+ s->entry[s->top++]=item;
+}
+void pop(stackentry *item,Stack *s)
+{
+ if(stackempty(s))
+ printf("stack is empty");
+ else
+ s->top=s->top-1;
+ *item=s->entry[s->top];
+}
+void display(Stack *s)
+{
+ char temp=s->top-1;
+ while(temp>=0)
+ printf("%d",s->entry[temp--]);
+}
+int main()
+{
+ struct stack s;
+ int i;
+ char c,name[10];
+ createstack(&s);
+ printf("enter a string\n");
+ scanf("%s",name);
+ for(i=0;name[i]!='\0';i++)
+ push(name[i],&s);
+ while(!stackempty(&s))
+ {
+  pop(&c,&s);
+  putchar(c);
+ }
+ printf("\n");
+ return 1;
+}
+/* output
+enter a string
+anusha
+ahsuna*/
